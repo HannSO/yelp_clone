@@ -57,4 +57,22 @@ feature 'reviewing' do
       expect(page).not_to have_content('Leave Review')
     end
   end
+
+  context 'someone else has left a review; diff user logged in' do
+    before do
+      leave_review_KFC('so so', '3')
+      click_link('Sign out')
+      visit '/users/sign_up'
+      fill_in('Email', with: 'test2@example.com')
+      fill_in('Password', with: 'test2test')
+      fill_in('Password confirmation', with: 'test2test')
+      click_button('Sign up')
+    end
+
+    scenario 'diff user logs in and leaves review, creating average' do
+
+      leave_review_KFC('EXCELLENT!', '5')
+      expect(page).to have_content('Average rating: 4')
+    end
+  end
 end
