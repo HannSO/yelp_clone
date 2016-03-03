@@ -28,7 +28,7 @@ feature 'reviewing' do
       select '3', from: 'Rating'
       click_button 'Leave Review'
       expect(page).to have_content('so so')
-      click_link 'delete KFC review'
+      click_link 'Delete review of KFC'
       expect(page).not_to have_content('so so')
     end
   end
