@@ -16,6 +16,10 @@ before_action :authenticate_user!, :except => [:index, :show]
     else
       render 'new'
     end
+
+    if current_user.has_reviewed? @restaurant
+      flash[:notice] = 'Restaurant already reviewed'
+    end
   end
 
   def show
@@ -32,4 +36,5 @@ before_action :authenticate_user!, :except => [:index, :show]
    flash[:notice] = 'Restaurant deleted successfully'
    redirect_to '/restaurants'
  end
+
 end
