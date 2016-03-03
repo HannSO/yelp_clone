@@ -80,4 +80,15 @@ feature 'restaurants' do
     end
   end
 
+  context 'logged out user tries to add restaurant' do
+    it 'redirects the user to a login page' do
+      visit '/restaurants'
+      click_link('Sign out')
+      click_link('Add a restaurant')
+      expect(current_path).to eq '/users/sign_in'
+      expect(page).to have_content 'You need to sign in or sign up before continuing.'
+      expect(page).not_to have_content 'Create Restaurant'
+    end
+  end
+
 end
