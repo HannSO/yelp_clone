@@ -69,10 +69,10 @@ feature 'reviewing' do
       click_button('Sign up')
     end
 
-    scenario 'diff user logs in and leaves review, creating average' do
+    scenario 'diff user logs in and leaves review, creating average star rating' do
 
       leave_review_KFC('EXCELLENT!', '5')
-      expect(page).to have_content('Average rating: 4')
+      expect(page).to have_content('Average rating:  ★★★★☆')
     end
   end
 end
