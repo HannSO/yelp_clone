@@ -2,8 +2,10 @@ Rails.application.routes.draw do
 
   # devise_for :users
 
-  resources :restaurants do
-    resources :reviews
+  resources :restaurants, shallow: true do
+    resources :reviews do
+      resources:endorsements
+    end
   end
 
   root to: "restaurants#index"

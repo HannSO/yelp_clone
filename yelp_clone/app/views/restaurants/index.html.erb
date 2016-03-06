@@ -8,12 +8,14 @@
 
 
 
+
     <% if restaurant.reviews.any? %>
       <ul>
         <% restaurant.reviews.each do |review| %>
           <li>
             <%= review.thoughts %>, <strong><%= review.rating %></strong>/5
-            <%= link_to "Delete review of #{restaurant.name}", restaurant_review_path(restaurant, review), method: :delete%>
+            <%= link_to "Delete review of #{restaurant.name}", review_path(review), method: :delete%>
+            <%= pluralize review.endorsements.count, 'endorsement' %></p>
           </li>
         <% end %>
       </ul>
