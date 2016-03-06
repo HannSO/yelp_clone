@@ -35,6 +35,6 @@ before_action :authenticate_user!, :except => [:index, :show]
    @restaurant.destroy
    flash[:notice] = 'Restaurant deleted successfully'
    redirect_to '/restaurants'
- end
+  end
 
 end
